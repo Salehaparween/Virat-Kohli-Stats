@@ -1,86 +1,76 @@
-# 🪔 Diwali Sales Analysis — Exploratory Data Analysis (EDA) with Python
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge)
-![Seaborn](https://img.shields.io/badge/Seaborn-4c72b0?style=for-the-badge)
-
-## 📌 Executive Summary
-During high-traffic festive seasons such as Diwali, consumer purchasing patterns shift dramatically. This project analyzes **11,250+ sales transactions** from an Indian retail business to understand customer demographics, high-value customer cohorts, regional demand, and category preferences. The objective is to extract actionable business insights that enable sales teams and marketers to optimize inventory, improve target segmentation, and boost festive revenues.
 
 ---
 
-## 🎯 Business Problem & Questions Answered
-1. **Who buys more?** What is the breakdown between male and female purchasers in terms of transaction count and total spend?
-2. **What age group dominates festive spending?** Which age cohort should marketing budget be targeted toward?
-3. **Which geographic markets lead sales?** Which states and zones contribute the largest share of orders and total revenue?
-4. **How does occupation correlate with spending power?** Which professions spend the most per order?
-5. **Which product categories drive the highest revenue?** Which items are the top volume movers vs. margin drivers?
+# 📁 3. Virat Kohli All-Format Statistics (Power BI & Excel)
+
+```markdown
+# 🏏 Virat Kohli Career Performance Analytics — Power BI & Excel
+
+![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=power-bi&logoColor=black)
+![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![Sports Analytics](https://img.shields.io/badge/Sports_Analytics-008080?style=for-the-badge)
+![DAX](https://img.shields.io/badge/DAX_Measures-00758F?style=for-the-badge)
+
+## 📌 Project Overview
+An interactive **Sports Analytics Dashboard** built using **Microsoft Power BI** and **Excel** to analyze the international batting career of cricket icon **Virat Kohli** across all three major formats: **Test, ODI, and T20I**.
+
+This project models historical match statistics to assess batting consistency, strike rate dynamics, boundary percentages, and year-by-year performance evolution.
 
 ---
 
-## 📊 Dataset Structure
-The dataset (`Diwali Sales Data.csv`) contains **11,251 rows and 15 columns**:
+## 🎯 Analytical Metrics Explored
+* **Format-Wise Comparison**: Comprehensive comparison between Test, ODI, and T20 International appearances.
+* **Volume Metrics**: Total Innings, Runs Scored, Balls Faced, and Outs.
+* **Efficiency & Scoring Rate**:
+  * **Batting Average (Avg)**: Runs scored per dismissal.
+  * **Strike Rate (SR)**: Scoring speed per 100 deliveries.
+* **Boundary Analysis**: Total 4s and 6s scored, boundary run contribution, and **Dot Ball %**.
+* **High Scores & Milestones**: Tracking peak scores (HS) and century conversion consistency.
+* **Year-by-Year Career Trajectory**: Evolution of Kohli's peak run-scoring calendar years.
 
-| Column Name | Description |
+---
+
+## 🗄️ Dataset Schema (`Virat Kohli Statistics.xlsx`)
+The dataset includes granular career statistics broken down across multiple dimensions:
+
+| Field Name | Description |
 |---|---|
-| `User_ID` | Unique identifier for each customer |
-| `Cust_name` | Customer full name |
-| `Product_ID` | Unique identifier for each product |
-| `Gender` | Gender of customer (`M` / `F`) |
-| `Age Group` | Categorized age ranges (e.g., `0-17`, `18-25`, `26-35`, `36-45`, `46-50`, `51-55`, `55+`) |
-| `Age` | Exact customer age |
-| `Marital_Status` | Marital status indicator (`0` = Single, `1` = Married) |
-| `State` | Customer's delivery state |
-| `Zone` | Geographic zone (Northern, Southern, Western, Central, Eastern) |
-| `Occupation` | Industry/Profession (IT, Healthcare, Aviation, Banking, Govt, etc.) |
-| `Product_Category` | Category of purchased item (Food, Clothing, Electronics, Footwear, etc.) |
-| `Orders` | Quantity of items ordered in the transaction |
-| `Amount` | Total transaction value in INR |
+| `Format` | Match format (`Test`, `ODI`, `T20i`) |
+| `Year` | Calendar year of competition |
+| `Innings` | Total innings batted |
+| `Runs` | Cumulative runs scored |
+| `Balls` | Total deliveries faced |
+| `Outs` | Total dismissals |
+| `Avg` | Calculated Batting Average (`Runs / Outs`) |
+| `SR` | Strike Rate (`(Runs / Balls) * 100`) |
+| `HS` | Highest score achieved in the period |
+| `4s` | Number of boundaries (fours) hit |
+| `6s` | Number of maximums (sixes) hit |
+| `Dot %` | Percentage of dot balls faced |
 
 ---
 
-## 🛠️ Data Cleaning & Preparation Workflow
-1. **Handling Missing Values**:
-   - Identified and dropped unpopulated tracking columns (`Status`, `unnamed1`).
-   - Removed null values present in the `Amount` field to maintain calculation integrity.
-2. **Data Type Casting**:
-   - Converted float amounts into integer formatting for monetary aggregation.
-3. **Statistical Validation**:
-   - Checked distributions, summary statistics (`describe()`), and unique value cardinalities.
+## 🛠️ Power BI Features & DAX Implementations
+* **Interactive Slicers**: Seamlessly toggle between Test, ODI, and T20I formats or select specific year ranges.
+* **Custom DAX Measures**:
+  * `Batting Average = DIVIDE(SUM('Overall'[Runs]), SUM('Overall'[Outs]), 0)`
+  * `Strike Rate = DIVIDE(SUM('Overall'[Runs]), SUM('Overall'[Balls]), 0) * 100`
+  * `Boundary Contribution % = DIVIDE((SUM('Overall'[4s])*4 + SUM('Overall'[6s])*6), SUM('Overall'[Runs]), 0)`
+* **Dynamic KPI Cards**: Instant summary of total career runs, centuries, global average, and overall strike rate.
+* **Custom Cricket Visual Theme**: High-contrast, clean sports visualization theme designed for clarity and aesthetic appeal.
 
 ---
 
-## 💡 Key Insights & Findings
-
-### 1. Gender Spending Disparity
-* **Women generate ~65%+ of total sales revenue** and command significantly higher order volume than men.
-
-### 2. High-Converting Age Bracket
-* The **26–35 age group** is the largest spender, contributing the highest order count and total gross merchandise value (GMV), followed by the 36–45 cohort.
-
-### 3. Regional Powerhouses
-* **Uttar Pradesh, Maharashtra, and Karnataka** dominate the top 3 state positions in both order quantity and total sales revenue.
-
-### 4. Profession vs. Spending Capacity
-* Customers working in **IT Sector, Healthcare, and Aviation** exhibit the highest average order value and total expenditure.
-
-### 5. Best-Selling Product Lines
-* **Food, Clothing & Apparel, and Electronics & Gadgets** generated the vast majority of festive revenue.
+## 💡 Key Analytical Takeaways
+1. **ODI Masterclass**: Kohli maintains an astronomical batting average exceeding 55+ in ODIs with an elite chase conversion rate.
+2. **Strike Rate Evolution**: Demonstrates a calculated acceleration curve in T20Is without sacrificing wicket preservation.
+3. **Peak Dominance Era (2016–2019)**: Visualizes the unprecedented peak across all formats where his calendar-year averages consistently crossed 60+.
+4. **Boundary vs. Strike Rotation**: Proves that despite hitting fewer high-risk sixes than pure power-hitters, low dot-ball percentages and running between wickets maintain a world-class strike rate.
 
 ---
 
-## 🚀 Strategic Business Recommendations
-* **Target Audience Persona**: Married working women aged 26–35 living in urban areas of UP, Maharashtra, and Karnataka working in IT and Healthcare sectors.
-* **Campaign Strategy**: Run targeted social media campaigns highlighting festive bundle discounts (e.g., matching apparel + sweets/food packs + electronics gifts).
-* **Inventory Stocking**: Proactively allocate 60%+ warehouse capacity in Western and Northern regional hubs to avoid out-of-stock bottlenecks on top-selling SKUs.
-
----
-
-## 💻 How to Run This Project
-1. Clone this repository:
+## 🖥️ How to Run
+1. Ensure you have **Microsoft Power BI Desktop** installed.
+2. Clone this repository:
    ```bash
-   git clone https://github.com/Salehaparween/Diwali_Sales_Analysis.git
-   cd Diwali_Sales_Analysis
+   git clone https://github.com/Salehaparween/Virat-Kohli-Statistics.git
